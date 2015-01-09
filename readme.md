@@ -7,7 +7,7 @@ In this tutorial you will learn how to use the Sinch SDK to make a voice call fr
 
 ##Start
 
-If you don't have an account with Sinch, sign up for one at [http://www.sinch.com/signup](http://www.sinch.com/signup). Set up a new application using the dashboard, and take note of your application key and secret. Next:
+If you don't have an account with Sinch, sign up for one [here](https://www.sinch.com/dashboard/#/signup). Set up a new application using the dashboard, and take note of your application key and secret. Next:
 
 * Launch Xcode and create a new project (File>New>Project)
 * Select 'Single View Application' and click next
