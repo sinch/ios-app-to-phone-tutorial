@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		561A50AA790F523CCAEA0219 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF98391908D80FED523C33A7 /* libPods.a */; };
 		778C84821A5ACD7000BB3E06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 778C84811A5ACD7000BB3E06 /* main.m */; };
 		778C84851A5ACD7000BB3E06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 778C84841A5ACD7000BB3E06 /* AppDelegate.m */; };
 		778C84881A5ACD7000BB3E06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778C84871A5ACD7000BB3E06 /* ViewController.m */; };
@@ -40,6 +41,9 @@
 		778C84951A5ACD7000BB3E06 /* ios-app-to-phoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-app-to-phoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		778C849A1A5ACD7000BB3E06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		778C849B1A5ACD7000BB3E06 /* ios_app_to_phoneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ios_app_to_phoneTests.m; sourceTree = "<group>"; };
+		C849BBD7D15F88BBDC6574F2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E1AC3383C7BF727A4688B192 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		EF98391908D80FED523C33A7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				561A50AA790F523CCAEA0219 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		612B9E0368D304561994C199 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF98391908D80FED523C33A7 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		778C84731A5ACD7000BB3E06 = {
 			isa = PBXGroup;
 			children = (
 				778C847E1A5ACD7000BB3E06 /* ios-app-to-phone */,
 				778C84981A5ACD7000BB3E06 /* ios-app-to-phoneTests */,
 				778C847D1A5ACD7000BB3E06 /* Products */,
+				AB02F3BC46190C7456A8E8DE /* Pods */,
+				612B9E0368D304561994C199 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +134,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		AB02F3BC46190C7456A8E8DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C849BBD7D15F88BBDC6574F2 /* Pods.debug.xcconfig */,
+				E1AC3383C7BF727A4688B192 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 778C849F1A5ACD7000BB3E06 /* Build configuration list for PBXNativeTarget "ios-app-to-phone" */;
 			buildPhases = (
+				C23DFE73950D0B4C4533D1BF /* Check Pods Manifest.lock */,
 				778C84781A5ACD7000BB3E06 /* Sources */,
 				778C84791A5ACD7000BB3E06 /* Frameworks */,
 				778C847A1A5ACD7000BB3E06 /* Resources */,
+				44ED0A4B5D29BFB38B09082B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,6 +239,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		44ED0A4B5D29BFB38B09082B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C23DFE73950D0B4C4533D1BF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		778C84781A5ACD7000BB3E06 /* Sources */ = {
@@ -341,21 +400,33 @@
 		};
 		778C84A01A5ACD7000BB3E06 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C849BBD7D15F88BBDC6574F2 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ios-app-to-phone/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
 		778C84A11A5ACD7000BB3E06 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1AC3383C7BF727A4688B192 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "ios-app-to-phone/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -412,6 +483,7 @@
 				778C84A11A5ACD7000BB3E06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		778C84A21A5ACD7000BB3E06 /* Build configuration list for PBXNativeTarget "ios-app-to-phoneTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +492,7 @@
 				778C84A41A5ACD7000BB3E06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

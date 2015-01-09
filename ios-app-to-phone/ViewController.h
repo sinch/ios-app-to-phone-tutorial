@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Sinch/Sinch.h>
 
 @interface ViewController : UIViewController
-
+<SINCallClientDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+- (IBAction)call:(id)sender;
 
 @end
 
