@@ -7,13 +7,13 @@ In this tutorial you will learn how to use the Sinch SDK to make a voice call fr
 
 ##Start
 
-If you don't have an account with Sinch, sign up for one at [http://www.sinch.com/signup](). Set up a new application using the dashboard, and take note of your application key and secret. Next:
+If you don't have an account with Sinch, sign up for one at [http://www.sinch.com/signup](http://www.sinch.com/signup). Set up a new application using the dashboard, and take note of your application key and secret. Next:
 
 * Launch Xcode and create a new project (File>New>Project)
 * Select 'Single View Application' and click next
 * Name the project 'CallingApp' and save it
 
-The easiest way to add the Sinch SDK is to use CocoaPods. Open a terminal window in your Xcode project directory, create a Podfile with the content below.
+The easiest way to add the Sinch SDK is to use CocoaPods. Open a terminal window in your Xcode project directory, create a Podfile with the content below:
 
 ```pod init```
 
@@ -23,14 +23,13 @@ Open the podfile and add below.
 pod 'SinchRTC'
 ```
 
-Save the file, in the terminal window type.
+Save the file, in the terminal window type:
 
 ```pod install```
 
 Note: If you are new to CocoaPods go to [cocoapods.org](http://cocoapods.org/) to learn how to install it.
 
 Last thing you have to do is to set the architectures settings on your project and the pod project to `armv7` and `armv7s` (We are launching 64bit support in a couple of weeks).
-
 
 ##Setting up the client
 Open the Main.storyboard in Xcode and add a textfield and a button. Set the text of the button to "Call".
@@ -86,7 +85,7 @@ Create a method call `initSinchClient`, add your application key and secret, and
     [_client start];}
 ```
 
-As you can see you have a warning now, lets fix that by adding the SINCallClientDelegate to the ViewController.h file 
+As you can see you have a warning now, lets fix that by adding the `SINCallClientDelegate` to the `ViewController.h` file 
 
 `@interface ViewController : UIViewController
 <SINCallClientDelegate>`
