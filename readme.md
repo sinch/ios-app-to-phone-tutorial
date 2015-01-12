@@ -96,7 +96,7 @@ Also, if you do not start an active connection, this will save you money.
 
 This all the setup needed to make PSTN (app to phone) calls. Next, we will implement a placing the call functionality.
 
-#Making a call 
+##Making a call 
 Change the `call:` action to look like this 
 
 ```
