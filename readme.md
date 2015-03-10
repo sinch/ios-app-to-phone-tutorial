@@ -1,55 +1,53 @@
-# iOS App to Phone Tutorial
-
-In this tutorial you will learn how to use the Sinch SDK to make a voice call from an iOS app to a regular phone number. This will take about 20 minutes to build, and will require:
+In this tutorial, you’ll learn how to use the Sinch SDK to make a voice call from an iOS app to a regular phone number. This will take about 20 minutes to build and will require:
 * Xcode
-* An understanding of ObjectiveC
-* Another phone to call to (any mobile with a regular phone number)
-
+* An understanding of Objective-C
+* Another phone to call (any mobile with a standard phone number)
+ 
 ##Start
-
-If you don't have an account with Sinch, sign up for one [here](https://www.sinch.com/dashboard/#/signup). Set up a new application using the dashboard, and take note of your application key and secret. Next:
-
+ 
+To begin, sign up for a Sinch account [here](https://www.sinch.com/dashboard/#/signup). Set up a new application using the dashboard and take note of your application key and secret. Next:
+ 
 * Launch Xcode and create a new project (File>New>Project)
-* Select 'Single View Application' and click next
-* Name the project 'CallingApp' and save it
-
-The easiest way to add the Sinch SDK is to use CocoaPods. Open a terminal window in your Xcode project directory, create a Podfile with the content below:
-
+* Select Single View Application and click Next
+* Name the project “CallingApp” and save it
+ 
+The easiest way to add the Sinch SDK is to use CocoaPods. Open a terminal window in your Xcode project directory and create a Podfile with the content below:
+ 
 ```pod init```
-
-Open the podfile and add below.
-
+ 
+Open the Podfile and add the following:
+ 
 ```
 pod 'SinchRTC'
-```
-
-Save the file, in the terminal window type:
-
+```50/100
+ 
+Save the file and in the terminal window type:
+ 
 ```pod install```
-
-Note: If you are new to CocoaPods go to [cocoapods.org](http://cocoapods.org/) to learn how to install it.
-
-Last thing you have to do is to set the architectures settings on your project and the pod project to `armv7` and `armv7s` (We are launching 64bit support in a couple of weeks).
-
+ 
+*Note: If you are new to CocoaPods, go to [cocoapods.org](http://cocoapods.org/) to learn how to install it.*
+ 
+Lastly, set the architectures on your project and the pod project to `armv7` and `armv7s`. (have launched 64-bit support - [Learn more about 64-bit support](https://www.sinch.com/product/sinch-ios-sdk-64-bit-support/).)
+ 
 ##Setting up the client
-Open the Main.storyboard in Xcode and add a textfield and a button. Set the text of the button to "Call".
-
+Open the **Main.storyboard** in Xcode and add a textfield and a button. Set the text of the button to "Call."
+ 
 ![](images/callscreen.png)
-
-Add outlets and actions in ViewController.h like this:
-
+ 
+Add outlets and actions in **ViewController.h** like this:
+ 
 ```objectivec
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 - (IBAction)call:(id)sender;
 ```
-
-Also add an import to the Sinch client in your ViewController.h
-
+ 
+Also add an import to the Sinch client in your ViewController.h:
+ 
 ```#import <Sinch/Sinch.h>```
-
-Then, in ViewController.m find `- (void)viewDidLoad`, and add after `[super viewDidLoad];`. Here is what your code should look like:
-
+ 
+Then, in ViewController.m, find `- (void)viewDidLoad` and add `[super viewDidLoad];` after. Here is what your code should look like:
+ 
 ```
 - (void)viewDidLoad
 {
@@ -57,9 +55,9 @@ Then, in ViewController.m find `- (void)viewDidLoad`, and add after `[super view
     [self initSinchClient];
 }
 ```
-
-Add instance variables to ViewController.m
-
+ 
+Add instance variables to ViewController.m:
+ 
 ```
 @interface ViewController ()
 {
@@ -68,59 +66,59 @@ Add instance variables to ViewController.m
 }
 @end
 ```
-
-and synthesize the properties, by adding `@synthesize phoneNumber, callButton;`
-
-Create a method call `initSinchClient`, add your application key and secret, and set the username to anything you want. In this tutorial we are not going to have any login functionality, as this is just a basic calling app skeleton.
-
+ 
+Next, synthesize the properties by adding `@synthesize phoneNumber, callButton;`.
+ 
+Create a method called `initSinchClient`, add your application key and secret, and choose a username. In this tutorial we are not going to have any login functionality because this is just a basic calling app skeleton.
+ 
 ```
--(void)initSinchClient 
+-(void)initSinchClient
 {
     _client = [Sinch clientWithApplicationKey:@"your_key"
-                            applicationSecret:@"your_secret"
+            	            applicationSecret:@"your_secret"
                               environmentHost:@"sandbox.sinch.com"
                                        userId:@"anything you want"];
     _client.callClient.delegate = self;
     [_client setSupportCalling:YES];
     [_client start];}
 ```
-
-As you can see you have a warning now, lets fix that by adding the `SINCallClientDelegate` to the `ViewController.h` file 
-
+ 
+As you can see, you now have a warning. Let’s fix that by adding the `SINCallClientDelegate` to the `ViewController.h` file:
+ 
 `@interface ViewController : UIViewController
 <SINCallClientDelegate>`
-
-For those of that have followed the [iOS app to app calling tutorial](https://www.sinch.com/tutorials/ios-simple-voice-app-tutorial/), you might notice that we are not listening to active connections with `[_client startListeningOnActiveConnection]`, and that is because it's not necessary when you only want to make PSTN calls and outgoing calls. 
-
-Also, if you do not start an active connection, this will save you money. 
-
-This all the setup needed to make PSTN (app to phone) calls. Next, we will implement a placing the call functionality.
-
-##Making a call 
-Change the `call:` action to look like this 
-
+ 
+If you have followed the [iOS app-to-app calling tutorial](https://www.sinch.com/tutorials/ios-simple-voice-app-tutorial/), you might notice that we are not listening to active connections with `[_client startListeningOnActiveConnection]`. That’s because it's unnecessary when you only want to make PSTN and outgoing calls.
+ 
+Also, not starting an active connection will save you money.
+ 
+This all the setup needed to make PSTN (app-to-phone) calls. Next, we will implement a “placing the call” functionality.
+ 
+##Making a call
+Change the `call:` action to look like this:
+ 
 ```
 - (IBAction)call:(id)sender {
     if (_call == nil)
-    {
+	{
         _call = [[_client callClient] callPhoneNumber:phoneNumber.text];
         [callButton setTitle:@"Hangup" forState:UIControlStateNormal];
-    }
+	}
     else
-    {
+	{
         [_call hangup];
         [callButton setTitle:@"Call" forState:UIControlStateNormal];
-    }
-    
+	}
+	
 }
 ```
-
-What we are doing here is changing the functionality to either call or hang-up.
-
-And that’s it for making a call. For a production app, your next steps would be to implement the `SINCallDelegate` protocol so you can make UI changes on `callDidEnd`, or `callDidEstablish`, for example.
-
+ 
+This changes the functionality either to call or hang up.
+ 
+And there you have it. For a production app, your next steps will be to implement the `SINCallDelegate` protocol so you can make UI changes on `callDidEnd` or `callDidEstablish`, for example.
+ 
 Happy coding!
-
+ 
 [Christian](https://www.sinch.com/author/christian/)
-
-If you enjoyed this tutorial, take a look at our other iOS and [app calling tutorials](https://www.sinch.com/tutorials/?tags%5B%5D=app-to-app&tags%5B%5D=app-to-phone).
+ 
+If you enjoyed this tutorial, read our other iOS and [app-calling tutorials](https://www.sinch.com/tutorials/?tags%5B%5D=app-to-app&tags%5B%5D=app-to-phone).
